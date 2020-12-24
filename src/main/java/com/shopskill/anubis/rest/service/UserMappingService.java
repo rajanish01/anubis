@@ -7,8 +7,10 @@ import com.shopskill.anubis.util.UserMappingUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -35,6 +37,18 @@ public class UserMappingService {
         UserMappingEntity mappingEntity = UserMappingEntity.map(request);
         mappingEntity.setUserId(userMappingUtility.generateUniqueUserId(request));
         log.info("Creating User Mapping For User : " + request.getFirstName() + " " + request.getLastName());
+        return userMappingRepository.save(mappingEntity);
+    }
+
+    public UserMappingEntity updateUserMapping(UserMapping request) {
+        Optional<UserMappingEntity> existingUser = userMappingRepository.findByUserId(request.getUserId());
+        if(existingUser.isEmpty()){
+            throw new NoSuchElementException("User With User Id Not Found : "+request.getUserId());
+        }
+        UserMappingEntity mappingEntity = UserMappingEntity.map(request);
+        mappingEntity.setId(existingUser.get().getId());
+        mappingEntity.setUserId(request.getUserId());
+        log.info("Updating User Mapping For User : " + request.getUserId());
         return userMappingRepository.save(mappingEntity);
     }
 
