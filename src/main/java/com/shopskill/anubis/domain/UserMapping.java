@@ -8,8 +8,9 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class UserMapping {
 
-    @NotEmpty(message = "User Name Can Not Be Empty Or Null !")
-    private String userName;
+    @NotEmpty(message = "First Name Can Not Be Empty Or Null !")
+    private String firstName;
+    private String lastName = "";
 
     @NotEmpty(message = "Password Can Not Be Empty Or Null !")
     private String password;

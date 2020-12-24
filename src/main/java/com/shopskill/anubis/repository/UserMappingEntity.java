@@ -17,14 +17,18 @@ public class UserMappingEntity {
     private String id;
 
     @Indexed(unique = true)
-    private String userName;
+    private String userId;
+
+    private String firstName;
+    private String lastName;
     private String password;
 
     private UserCategory userCategory;
 
     public static UserMappingEntity map(UserMapping userMapping) {
         UserMappingEntity userMappingEntity = new UserMappingEntity();
-        userMappingEntity.setUserName(userMapping.getUserName());
+        userMappingEntity.setFirstName(userMapping.getFirstName());
+        userMappingEntity.setLastName(userMapping.getLastName());
         userMappingEntity.setPassword(userMapping.getPassword());
         userMappingEntity.setUserCategory(userMapping.getUserCategory());
         return userMappingEntity;
