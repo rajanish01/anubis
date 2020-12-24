@@ -1,17 +1,14 @@
 package com.shopskill.anubis.rest.controller;
 
 import com.shopskill.anubis.domain.AuthenticationRequest;
-import com.shopskill.anubis.domain.UserMapping;
-import com.shopskill.anubis.repository.UserMappingEntity;
 import com.shopskill.anubis.rest.service.UserMappingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/authenticate")
@@ -29,18 +26,6 @@ public class AuthenticationRestController {
     @GetMapping()
     public void userAuthenticator(@RequestBody final AuthenticationRequest request) {
 
-    }
-
-    @PostMapping()
-    public ResponseEntity createUserMapping(@Valid @RequestBody final UserMapping request) {
-        try {
-            UserMappingEntity response = userMappingService.createUserMapping(request);
-            log.info("User Mapping Creation SUCCESSFUL For User : " + request.getFirstName() + " With Id : " + response.getUserId());
-            return ResponseEntity.accepted().body(response);
-        } catch (Exception e) {
-            log.error("User Mapping Creation FAILED For User : " + request.getFirstName() + " " + request.getLastName());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-        }
     }
 
 }

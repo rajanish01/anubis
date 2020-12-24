@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserMappingService {
 
@@ -22,6 +24,11 @@ public class UserMappingService {
                               final UserMappingUtility userMappingUtility) {
         this.userMappingRepository = userMappingRepository;
         this.userMappingUtility = userMappingUtility;
+    }
+
+    public UserMapping getUserMapping(String userId) {
+        Optional<UserMappingEntity> userDetails = userMappingRepository.findByUserId(userId);
+        return userDetails.map(UserMapping::map).orElse(null);
     }
 
     public UserMappingEntity createUserMapping(UserMapping request) {
