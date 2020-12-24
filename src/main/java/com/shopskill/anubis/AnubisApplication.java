@@ -1,5 +1,6 @@
 package com.shopskill.anubis;
 
+import com.shopskill.anubis.configs.RequestFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;

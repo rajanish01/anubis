@@ -27,7 +27,12 @@ ext {
 dependencies {
     implementation(
             [group: 'org.springframework.boot', name: 'spring-boot-starter-web'],
-            [group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-zuul']
+            [group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-zuul'],
+            [group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb'],
+    )
+    compile(
+            [group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.4.1'],
+            [group: 'com.google.guava', name: 'guava', version: '30.1-jre']
     )
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
