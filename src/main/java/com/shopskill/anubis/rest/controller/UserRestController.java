@@ -14,6 +14,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/user")
+@SuppressWarnings("unused")
 public class UserRestController {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
